@@ -3,6 +3,8 @@ import time
 import Adafruit_DHT
 import requests
 from sps30 import SPS30
+from datetime import datetime
+
 DHT_SENSOR = Adafruit_DHT.DHT22
 DHT_PIN = 4
 
@@ -44,7 +46,6 @@ def temp_and_humidity():
 
 
 def pollution():
-
     try:
         time.sleep(3)
         sps.start_measurement()
@@ -61,6 +62,7 @@ def pollution():
         if sps.read_measured_values() == sps.MEASURED_VALUES_ERROR:
             raise Exception("MEASURED VALUES CRC ERROR!")
         else:
+            print(sps)
             pm1 = str(sps.dict_values['pm1p0'])
             pm2 = str(sps.dict_values['pm2p5'])
             pm10 = str(sps.dict_values['pm10p0'])
@@ -78,9 +80,10 @@ def pollution():
         return 0, 0, 0
 
 
-def save(t, h, pm1, pm25, pm10):
+def save(date, time, temp, hum, pm1, pm25, pm10):
     with open("/home/pi/dts/info.csv", "a+") as f:
-        f.write("{},{},{:0.5f},{:0.5f},{:0.5f}\n".format(t, h, pm1, pm25, pm10))
+        f.write("{},{},{:0.5f},{:0.5f},{:0.5f},{:0.5f},{:0.5f}\n".format(
+            date, time, temp, hum, pm1, pm25, pm10))
 
 
 def upload(t, h, pm1, pm25, pm10):
@@ -89,10 +92,16 @@ def upload(t, h, pm1, pm25, pm10):
 
 
 while True:
+    now = datetime.now()
+
     t, h = temp_and_humidity()
     pm1, pm25, pm10 = pollution()
-    save(t, h, float(pm1), float(pm25), float(pm10))
+
+    dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
+    date, time = dt_string.split(" ")
+
+    save(date, time, t, h, float(pm1), float(pm25), float(pm10))
     upload(t, h, float(pm1), float(pm25), float(pm10))
-    os.system("git commit -am '[Automatic] CSV udpdate'")
-    os.system("git push")
+    # os.system("git commit -am '[Automatic] CSV udpdate' > /dev/null")
+    # os.system("git push > /dev/null")
     time.sleep(SAMPLING_INTERVAL)
