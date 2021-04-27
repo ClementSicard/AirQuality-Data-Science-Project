@@ -1,1 +1,10 @@
-python3 get_data.py
+COUNT=0
+
+while :
+do
+    echo "Script started $COUNT"
+    python3 get_data.py
+    ((COUNT++))
+done
+
+

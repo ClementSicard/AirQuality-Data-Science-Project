@@ -46,36 +46,36 @@ def temp_and_humidity():
 
 
 def pollution():
-    # try:
-    sleep(3)
-    sps.start_measurement()
-    sleep(3)
+    try:
+        sleep(3)
+        sps.start_measurement()
+        sleep(3)
 
-    while not sps.read_data_ready_flag():
-        print("New Measurement is not available!")
-        sleep(1)
-        if sps.read_data_ready_flag() == sps.DATA_READY_FLAG_ERROR:
-            raise Exception("DATA-READY FLAG CRC ERROR!")
-    pm1 = 0
-    pm2 = 0
-    pm10 = 0
-    if sps.read_measured_values() == sps.MEASURED_VALUES_ERROR:
-        raise Exception("MEASURED VALUES CRC ERROR!")
-    else:
-        pm1 = str(sps.dict_values['pm1p0'])
-        pm2 = str(sps.dict_values['pm2p5'])
-        pm10 = str(sps.dict_values['pm10p0'])
+        while not sps.read_data_ready_flag():
+            print("New Measurement is not available!")
+            sleep(1)
+            if sps.read_data_ready_flag() == sps.DATA_READY_FLAG_ERROR:
+                raise Exception("DATA-READY FLAG CRC ERROR!")
+        pm1 = 0
+        pm2 = 0
+        pm10 = 0
+        if sps.read_measured_values() == sps.MEASURED_VALUES_ERROR:
+            raise Exception("MEASURED VALUES CRC ERROR!")
+        else:
+            pm1 = str(sps.dict_values['pm1p0'])
+            pm2 = str(sps.dict_values['pm2p5'])
+            pm10 = str(sps.dict_values['pm10p0'])
 
-    sps.stop_measurement()
-    print("Measurement added!")
-    sps.start_fan_cleaning()
+        sps.stop_measurement()
+        print("Measurement added!")
+        sps.start_fan_cleaning()
 
-    return pm1, pm2, pm10
+        return pm1, pm2, pm10
 
-    # except IOError:
-
-    #     # A changer
-    #     return 0, 0, 0
+    except IOError:
+        print("Oupsi erreur")
+        exit()
+        # A changer
 
 
 def save(date, time, temp, hum, pm1, pm25, pm10):
