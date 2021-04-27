@@ -1,11 +1,6 @@
-COUNT=0
-
-while [ $COUNT -le 10 ]
+for n in 1 2 3 4 5 :
 do
-    echo "Script started $COUNT"
-    python3 get_data2.py
-    ((COUNT++))
+    echo $n
+    python3 get_data2.py &
     sleep 30
 done
-
-
