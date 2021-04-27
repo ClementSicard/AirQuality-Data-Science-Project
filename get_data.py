@@ -9,8 +9,8 @@ from time import sleep
 from urllib.request import urlopen
 
 #ThingsSpeak credentials
-#myAPI = 'XXXXXXXXXX' #Add your API Key
-#baseURL = 'https://api.thingspeak.com/update?api_key=%s' % myAPI
+myAPI = 'L50MRPUQ7X1N3J9Z' #Add your API Key
+baseURL = 'https://api.thingspeak.com/update?api_key=%s' % myAPI
 
 try:
     f = open('/home/pi/dts/info.csv', 'a+')
@@ -99,9 +99,12 @@ date = str(datetime.datetime.now().strftime("%Y-%m-%d"))
 time = str(datetime.datetime.now().strftime("%H:%M:%S"))
 
 # Specify the fields for ThingsSpeak and send data
-#f = urlopen(baseURL + '&field1=%s&field2=%s&field3=%s&field4=%s&field5=%s' % (temp, hum, pm1, pm25, pm10)) 
-#f.read()
-#f.close()
+try:
+    f = urlopen(baseURL + '&field2=%s&field3=%s&field4=%s&field5=%s&field6=%s' % (temp, hum, pm1, pm25, pm10)) 
+    f.read()
+    f.close()
+except:
+    print("Erreur reseau")
 
 with open("/home/pi/dts/info.csv", "a+") as f:
     f.write("{},{},{},{},{},{},{}\n".format(date, time, temp, hum, pm1, pm25, pm10))
