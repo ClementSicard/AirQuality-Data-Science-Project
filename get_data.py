@@ -62,7 +62,7 @@ def pollution():
         if sps.read_measured_values() == sps.MEASURED_VALUES_ERROR:
             raise Exception("MEASURED VALUES CRC ERROR!")
         else:
-            print(sps)
+            print(sps.dict_values)
             pm1 = str(sps.dict_values['pm1p0'])
             pm2 = str(sps.dict_values['pm2p5'])
             pm10 = str(sps.dict_values['pm10p0'])
