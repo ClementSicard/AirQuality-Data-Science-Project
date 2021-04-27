@@ -93,4 +93,6 @@ while True:
     pm1, pm25, pm10 = pollution()
     save(t, h, float(pm1), float(pm25), float(pm10))
     upload(t, h, float(pm1), float(pm25), float(pm10))
+    os.system("git commit -am '[Automatic] CSV udpdate'")
+    os.system("git push")
     time.sleep(SAMPLING_INTERVAL)
