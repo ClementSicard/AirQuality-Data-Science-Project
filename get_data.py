@@ -90,8 +90,6 @@ def upload(t, h, pm1, pm25, pm10):
 
 
 while True:
-    sps = SPS30(1) #eventual patch
-
     now = datetime.now()
 
     t, h = temp_and_humidity()
