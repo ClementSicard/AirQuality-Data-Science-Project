@@ -1,5 +1,5 @@
 import os
-import time
+from time import sleep
 import Adafruit_DHT
 import requests
 from sps30 import SPS30
@@ -47,13 +47,13 @@ def temp_and_humidity():
 
 def pollution():
     try:
-        time.sleep(3)
+        sleep(3)
         sps.start_measurement()
-        time.sleep(3)
+        sleep(3)
 
         while not sps.read_data_ready_flag():
             print("New Measurement is not available!")
-            time.sleep(1)
+            sleep(1)
             if sps.read_data_ready_flag() == sps.DATA_READY_FLAG_ERROR:
                 raise Exception("DATA-READY FLAG CRC ERROR!")
         pm1 = 0
@@ -104,4 +104,4 @@ while True:
     upload(t, h, float(pm1), float(pm25), float(pm10))
     # os.system("git commit -am '[Automatic] CSV udpdate' > /dev/null")
     # os.system("git push > /dev/null")
-    time.sleep(SAMPLING_INTERVAL)
+    sleep(SAMPLING_INTERVAL)
