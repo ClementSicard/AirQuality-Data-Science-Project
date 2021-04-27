@@ -33,7 +33,7 @@ else:
     print("DEVICE SERIAL: " + str(sps.read_device_serial()))
 # default 604800, set 0 to disable auto-cleaning
 sps.set_auto_cleaning_interval(0)
-sps.device_reset()
+#sps.device_reset()
 
 
 def temp_and_humidity():
@@ -90,6 +90,8 @@ def upload(t, h, pm1, pm25, pm10):
 
 
 while True:
+    sps.device_reset() #to check
+
     now = datetime.now()
 
     t, h = temp_and_humidity()
