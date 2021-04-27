@@ -46,7 +46,9 @@ def temp_and_humidity():
 def pollution():
 
     try:
+        time.sleep(3)
         sps.start_measurement()
+        time.sleep(3)
 
         while not sps.read_data_ready_flag():
             print("New Measurement is not available!")
@@ -77,7 +79,7 @@ def pollution():
 
 
 def save(t, h, pm1, pm25, pm10):
-    with open("/home/pi/dts/info.csv", "a") as f:
+    with open("/home/pi/dts/info.csv", "a+") as f:
         f.write("{},{},{:0.5f},{:0.5f},{:0.5f}".format(t, h, pm1, pm25, pm10))
 
 
