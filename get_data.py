@@ -80,7 +80,7 @@ def pollution():
 
 def save(t, h, pm1, pm25, pm10):
     with open("/home/pi/dts/info.csv", "a+") as f:
-        f.write("{},{},{:0.5f},{:0.5f},{:0.5f}".format(t, h, pm1, pm25, pm10))
+        f.write("{},{},{:0.5f},{:0.5f},{:0.5f}\n".format(t, h, pm1, pm25, pm10))
 
 
 def upload(t, h, pm1, pm25, pm10):
