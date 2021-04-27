@@ -1,10 +1,11 @@
 COUNT=0
 
-while :
+while [ $COUNT -le 10 ]
 do
     echo "Script started $COUNT"
-    python3 get_data.py
+    python3 get_data2.py
     ((COUNT++))
+    sleep 30
 done
 
 
