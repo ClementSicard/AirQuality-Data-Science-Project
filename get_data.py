@@ -68,11 +68,11 @@ def pollution():
 
         sps.stop_measurement()
         print("Measurement added!")
-        sps.start_fan_cleaning()
+        # sps.start_fan_cleaning()
 
         return pm1, pm2, pm10
 
-    except IOError:
+    except:
         print("Oupsi erreur")
         exit()
         # A changer
