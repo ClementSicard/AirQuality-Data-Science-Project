@@ -57,9 +57,8 @@ try:
 
     if sps.read_measured_values() == sps.MEASURED_VALUES_ERROR:
         raise Exception("MEASURED VALUES CRC ERROR!")
-    else:
-        #print ("pm1
-        #.0 Value in µg/m3: " + str(sps.dict_values['pm1p0']))
+    #else:
+        #print ("pm1.0 Value in µg/m3: " + str(sps.dict_values['pm1p0']))
         #print ("PM2.5 Value in µg/m3: " + str(sps.dict_values['pm2p5']))
         #print ("PM4.0 Value in µg/m3: " + str(sps.dict_values['pm4p0']))
         #print ("pm10.0 Value in µg/m3: " + str(sps.dict_values['pm10p0']))

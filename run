@@ -1,6 +1,5 @@
-for n in 1 2 3 4 5 :
+while :
 do
-    echo $n
-    python3 get_data2.py &
-    sleep 30
+    python3 get_data.py &
+    sleep 300
 done
