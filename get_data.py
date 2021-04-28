@@ -100,8 +100,8 @@ with open("/home/pi/dts/info.csv", "a+") as f:
     f.write("{},{},{},{},{},{},{}\n".format(
         date, time, temp, hum, pm1, pm25, pm10))
 
-os.system("git commit -am '[Automatic] CSV udpdate' &> /dev/null")
-os.system("git push &> /dev/null")
+os.system("git commit -am '[Automatic] CSV udpdate' > /dev/null 2>&1")
+os.system("git push > /dev/null 2>&1")
 
 
 #print('Temperature in Celsius:',temp)
