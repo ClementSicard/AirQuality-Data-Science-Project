@@ -1,5 +1,5 @@
 while :
 do
     python3 get_data.py &
-    sleep 300
+    sleep 30
 done

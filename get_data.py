@@ -1,6 +1,7 @@
 import sys
 import time
-#import thingspeak
+import os
+import thingspeak
 import datetime
 import csv
 import Adafruit_DHT
@@ -18,7 +19,8 @@ try:
         f.write('Date,Time,Temperature,Humidity,PM1,PM2.5,PM10\r\n')
     f.close()
 except:
-    pass
+    print("Error opening 'info.csv'")
+
 
 
 pm1, pm25, pm10 = None, None, None
@@ -27,13 +29,10 @@ try:
 
     if sps.read_article_code() == sps.ARTICLE_CODE_ERROR:
         raise Exception("ARTICLE CODE CRC ERROR!")
-    else:
-        print("ARTICLE CODE: " + str(sps.read_article_code()))
+        
 
     if sps.read_device_serial() == sps.SERIAL_NUMBER_ERROR:
         raise Exception("SERIAL NUMBER CRC ERROR!")
-    else:
-        print("DEVICE SERIAL: " + str(sps.read_device_serial()))
 
     if sps.read_auto_cleaning_interval() != 604800 :
         sps.set_auto_cleaning_interval(604800) # default 604800, set 0 to disable auto-cleaning
@@ -41,8 +40,6 @@ try:
 
     if sps.read_auto_cleaning_interval() == sps.AUTO_CLN_INTERVAL_ERROR: # or returns the interval in seconds
         raise Exception("AUTO-CLEANING INTERVAL CRC ERROR!")
-    else:
-        print("AUTO-CLEANING INTERVAL: " + str(sps.read_auto_cleaning_interval()))
 
     sleep(5)
 
@@ -76,8 +73,8 @@ try:
     pm1 = round((sps.dict_values['pm1p0']),2)
     pm25 = round((sps.dict_values['pm2p5']),2)
     pm10 = round((sps.dict_values['pm10p0']),2)
-except:
-    print("SPS ERROR")
+except Exception as e:
+    print(e)
 
 
 temp, hum = None, None
