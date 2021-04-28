@@ -13,15 +13,6 @@ from urllib.request import urlopen
 myAPI = 'L50MRPUQ7X1N3J9Z' #Add your API Key
 baseURL = 'https://api.thingspeak.com/update?api_key=%s' % myAPI
 
-try:
-    f = open('/home/pi/dts/info.csv', 'a+')
-    if os.stat('/home/pi/dts/info.csv').st_size == 0:
-        f.write('Date,Time,Temperature,Humidity,PM1,PM2.5,PM10\r\n')
-    f.close()
-except:
-    print("Error opening 'info.csv'")
-
-
 
 pm1, pm25, pm10 = None, None, None
 try:
