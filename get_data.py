@@ -106,14 +106,15 @@ except:
 with open("/home/pi/dts/info.csv", "a+") as f:
     f.write("{},{},{},{},{},{},{}\n".format(date, time, temp, hum, pm1, pm25, pm10))
 
-os.system("git commit -am '[Automatic] CSV udpdate' > /dev/null")
+os.system("git commit -am '[Automatic] CSV udpdate' &> /dev/null")
 os.system("git push > /dev/null")
 
 
-print('Temperature in Celsius:',temp)
-print('Humidity in %:', hum)
-print('pm1 value in µg/m3:',pm1)
-print('PM2.5 value in µg/m3:',pm25)
-print('pm10 value in µg/m3:',pm10)
-print('Date:',date)
-print('Time:',time)
+#print('Temperature in Celsius:',temp)
+#print('Humidity in %:', hum)
+#print('pm1 value in µg/m3:',pm1)
+#print('PM2.5 value in µg/m3:',pm25)
+#print('pm10 value in µg/m3:',pm10)
+#print('Date:',date)
+#print('Time:',time)
+print("New measurement uploaded!\n")
