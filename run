@@ -1,3 +1,5 @@
+echo "Script started!"
+
 while :
 do
     python3 get_data.py &
