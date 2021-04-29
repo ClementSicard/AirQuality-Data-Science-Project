@@ -3,5 +3,5 @@ echo "Script started!"
 while :
 do
     python3 get_data.py &
-    sleep 30
+    sleep 300
 done
