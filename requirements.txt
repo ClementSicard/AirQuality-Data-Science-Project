@@ -1,2 +1,5 @@
 Adafruit-DHT
 sps30
+thingspeak
+pandas
+plotly
