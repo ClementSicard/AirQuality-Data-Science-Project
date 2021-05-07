@@ -1,9 +1,3 @@
-Station: Zürich-Kaserne
-Urban
-Hourly means, PREC: Hourly sums
-MEZ/CET
-Source: NABEL/MeteoSchweiz
-The measured values for the current year are preliminary and not yet definitively verified.
 Date/time;PM10 [ug/m3];PM2.5 [ug/m3];TEMP [C];PREC [mm]
 01.09.2020 01:00;2.9;2.1;14.4;0.0
 01.09.2020 02:00;2.8;1.9;14.5;0.0
