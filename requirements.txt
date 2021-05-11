@@ -3,3 +3,7 @@ sps30
 thingspeak
 pandas
 plotly
+seaborn
+tensorflow
+keras
+sklearn
