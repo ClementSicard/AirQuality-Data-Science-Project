@@ -1,6 +1,7 @@
 Adafruit-DHT
 sps30
 pandas
+numpy
 plotly
 seaborn
 tensorflow
