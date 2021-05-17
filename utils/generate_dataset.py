@@ -51,6 +51,17 @@ def get_thingspeak_data(id: str, api_key: str, nb_of_results: int = 8000, drop_e
     return df
 
 
+def get_unprocessed_dataset() -> pd.DataFrame:
+    df_zue = get_zue_data()
+    df_ts = get_thingspeak_data(id=CHANNEL_ID, api_key=API_KEY, save=True)
+    df = merge_without_preprocessing(df_ts=df_ts, df_zue=df_zue)
+    return df
+
+
+def merge_without_preprocessing(df_zue: pd.DataFrame, df_ts: pd.DataFrame):
+    return pd.concat([df_zue, df_ts])
+
+
 def get_zue_data():
     df = pd.read_csv('data/nabel_data.csv', delimiter=";")
     df["Date/time"] = pd.to_datetime(df["Date/time"], format='%d.%m.%Y %H:%M')
